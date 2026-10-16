@@ -5,32 +5,66 @@
   "use strict";
 
   const CURRENCY = "Rs ";
-  const IMG = (id, w = 700) =>
-    `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+  // Photo for each product: assets/products/<slug>.jpg if you add one,
+  // otherwise a keyword-matched stock photo, otherwise a styled icon.
+  const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const stock = (tags, lock) => `https://loremflickr.com/800/600/${tags}/all?lock=${lock}`;
 
   const PRODUCTS = [
-    { name: "iPhone Pro Max 256GB", cat: "phones", price: 389999, old: 419999, rating: 4.9, reviews: 812, tag: "Best Seller", img: IMG("photo-1592750475338-74b7b21085ab") },
-    { name: "Galaxy S Ultra 5G", cat: "phones", price: 329999, old: 359999, rating: 4.8, reviews: 640, tag: "New", img: IMG("photo-1610945265064-0e34e5519bbf") },
-    { name: "MacBook Air M-Series 13\"", cat: "laptops", price: 344999, old: 369999, rating: 4.9, reviews: 455, tag: "Hot", img: IMG("photo-1517336714731-489689fd1ca8") },
-    { name: "Ultrabook Pro 14\" i7", cat: "laptops", price: 249999, old: 279999, rating: 4.7, reviews: 298, img: IMG("photo-1496181133206-80ce9b88a853") },
-    { name: "Wireless ANC Headphones", cat: "audio", price: 54999, old: 79999, rating: 4.8, reviews: 1204, tag: "-30%", img: IMG("photo-1505740420928-5e560c06d30e") },
-    { name: "Portable Bluetooth Speaker", cat: "audio", price: 18999, old: 22999, rating: 4.6, reviews: 530, img: IMG("photo-1608043152269-423dbba4e7e1") },
-    { name: "55\" 4K UHD Smart TV", cat: "tv", price: 149999, old: 174999, rating: 4.7, reviews: 342, tag: "Deal", img: IMG("photo-1593359677879-a4bb92f829d1") },
-    { name: "Mirrorless Camera Kit", cat: "cameras", price: 219999, old: 239999, rating: 4.8, reviews: 187, img: IMG("photo-1516035069371-29a1b244cc32") },
-    { name: "Instant Film Camera", cat: "cameras", price: 24999, rating: 4.5, reviews: 260, img: IMG("photo-1526170375885-4d8ecf77b99f") },
-    { name: "Wireless Game Controller", cat: "gaming", price: 15999, old: 18999, rating: 4.7, reviews: 690, img: IMG("photo-1606144042614-b2417e99c4e3") },
-    { name: "Next-Gen Gaming Console", cat: "gaming", price: 164999, rating: 4.9, reviews: 920, tag: "Hot", img: IMG("photo-1486401899868-0e435ed85128") },
-    { name: "Smartwatch Series GPS", cat: "wearables", price: 89999, old: 99999, rating: 4.8, reviews: 733, tag: "New", img: IMG("photo-1546868871-7041f2a55e12") },
-  ];
+    // Fans
+    { name: "Ceiling Fan", cat: "fans", price: 12999, old: 14999, rating: 4.8, reviews: 1320, tag: "Best Seller", tags: "ceiling,fan", icon: "🌀" },
+    { name: "Pedestal Fan", cat: "fans", price: 10499, old: 11999, rating: 4.7, reviews: 860, tags: "electric,fan", icon: "🌀" },
+    { name: "Exhaust Fan", cat: "fans", price: 3999, rating: 4.6, reviews: 540, tags: "exhaust,fan", icon: "🌀" },
+    { name: "Wall-Mounted Fan", cat: "fans", price: 8499, old: 9499, rating: 4.6, reviews: 410, tags: "wall,fan", icon: "🌀" },
+    { name: "Table Fan", cat: "fans", price: 5999, rating: 4.5, reviews: 690, tags: "desk,fan", icon: "🌀" },
+    // Air conditioners
+    { name: "Air Conditioner (AC) 1.5 Ton Inverter", cat: "ac", price: 164999, old: 219999, rating: 4.9, reviews: 975, tag: "-25%", tags: "air,conditioner", icon: "❄️" },
+    { name: "Portable Air Conditioner", cat: "ac", price: 119999, old: 134999, rating: 4.6, reviews: 220, tag: "New", tags: "portable,air,conditioner", icon: "❄️" },
+    // Air coolers
+    { name: "Room Cooler / Air Cooler", cat: "coolers", price: 32999, old: 37999, rating: 4.7, reviews: 780, tag: "Hot", tags: "air,cooler", icon: "💨" },
+    { name: "Air Cooler Fan", cat: "coolers", price: 21999, rating: 4.5, reviews: 365, tags: "evaporative,cooler", icon: "💨" },
+    // Refrigeration
+    { name: "Refrigerator / Fridge", cat: "fridge", price: 139999, old: 154999, rating: 4.8, reviews: 1104, tag: "Best Seller", tags: "refrigerator", icon: "🧊" },
+    { name: "Deep Freezer", cat: "fridge", price: 109999, old: 119999, rating: 4.7, reviews: 430, tags: "freezer", icon: "🧊" },
+    // Cooking
+    { name: "Microwave Oven", cat: "cooking", price: 29999, old: 34999, rating: 4.7, reviews: 890, tags: "microwave,oven", icon: "🍳" },
+    { name: "Electric Oven", cat: "cooking", price: 24999, rating: 4.6, reviews: 315, tags: "electric,oven", icon: "🍳" },
+    { name: "Air Fryer", cat: "cooking", price: 18999, old: 24999, rating: 4.9, reviews: 1460, tag: "Hot", tags: "air,fryer", icon: "🍟" },
+    { name: "Electric Stove", cat: "cooking", price: 9999, rating: 4.5, reviews: 280, tags: "electric,stove", icon: "🔥" },
+    { name: "Induction Cooker", cat: "cooking", price: 11999, old: 13999, rating: 4.6, reviews: 455, tags: "induction,cooktop", icon: "🔥" },
+    { name: "Rice Cooker", cat: "cooking", price: 8999, rating: 4.7, reviews: 510, tags: "rice,cooker", icon: "🍚" },
+    { name: "Electric Pressure Cooker", cat: "cooking", price: 16999, old: 19999, rating: 4.7, reviews: 390, tags: "pressure,cooker", icon: "🍲" },
+    // Kitchen helpers
+    { name: "Electric Kettle", cat: "small", price: 4499, old: 5499, rating: 4.8, reviews: 1210, tags: "electric,kettle", icon: "☕" },
+    { name: "Toaster", cat: "small", price: 5999, rating: 4.6, reviews: 470, tags: "toaster", icon: "🍞" },
+    { name: "Sandwich Maker", cat: "small", price: 4999, rating: 4.5, reviews: 520, tags: "sandwich,maker", icon: "🥪" },
+    { name: "Blender", cat: "small", price: 7999, old: 9499, rating: 4.7, reviews: 760, tags: "blender", icon: "🥤" },
+    { name: "Juicer", cat: "small", price: 9499, rating: 4.6, reviews: 340, tags: "juicer", icon: "🍊" },
+    { name: "Food Processor", cat: "small", price: 19999, old: 22999, rating: 4.7, reviews: 260, tag: "New", tags: "food,processor", icon: "🥕" },
+    { name: "Mixer Grinder", cat: "small", price: 11999, rating: 4.6, reviews: 410, tags: "mixer,grinder", icon: "🌶️" },
+    // Kitchen care
+    { name: "Dishwasher", cat: "care", price: 149999, old: 164999, rating: 4.7, reviews: 180, tags: "dishwasher", icon: "🍽️" },
+    { name: "Range Hood / Kitchen Exhaust", cat: "care", price: 39999, old: 44999, rating: 4.6, reviews: 230, tags: "range,hood", icon: "♨️" },
+  ].map((p, i) => ({ ...p, img: `assets/products/${slug(p.name)}.jpg`, fallback: stock(p.tags, 100 + i) }));
 
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const fmt = (n) => CURRENCY + n.toLocaleString("en-US");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Image fallback (so a missing photo never looks broken) ---------- */
+  /* ---------- Image fallback chain ----------
+     Tries src, then each URL in data-fallback ("a|b"), then shows the
+     parent's data-icon on a styled background so nothing looks broken. */
   const guardImg = (img) => {
-    img.addEventListener("error", () => img.classList.add("img-fallback"), { once: true });
+    const queue = (img.dataset.fallback || "").split("|").filter(Boolean);
+    img.addEventListener("error", function next() {
+      if (queue.length) { img.src = queue.shift(); return; }
+      img.removeEventListener("error", next);
+      img.classList.add("img-fallback");
+      img.parentElement.classList.add("icon-fallback");
+    });
+    // Image already failed before this script ran
+    if (img.complete && img.naturalWidth === 0 && img.src) img.dispatchEvent(new Event("error"));
   };
   $$("img").forEach(guardImg);
 
@@ -44,7 +78,7 @@
 
   /* ---------- Typewriter (live typing) ---------- */
   const typedEl = $("#typed");
-  const words = ["Smartphones.", "Laptops.", "Smart TVs.", "Headphones.", "Gaming.", "Electronics."];
+  const words = ["Ceiling Fans.", "Air Conditioners.", "Air Coolers.", "Refrigerators.", "Air Fryers.", "Microwave Ovens.", "Home Appliances."];
   if (reducedMotion) {
     typedEl.textContent = words[words.length - 1];
   } else {
@@ -128,14 +162,14 @@
   /* ---------- Products ---------- */
   const grid = $("#productGrid");
   const stars = (r) => "★".repeat(Math.round(r)) + "☆".repeat(5 - Math.round(r));
-  const labels = { phones: "Smartphone", laptops: "Laptop", audio: "Audio", tv: "Smart TV", cameras: "Camera", gaming: "Gaming", wearables: "Wearable" };
+  const labels = { fans: "Fan", ac: "Air Conditioner", coolers: "Air Cooler", fridge: "Refrigeration", cooking: "Cooking", small: "Kitchen Helper", care: "Kitchen Care" };
 
   const renderProducts = (filter = "all") => {
     const list = filter === "all" ? PRODUCTS : PRODUCTS.filter((p) => p.cat === filter);
     grid.innerHTML = list.map((p, idx) => `
       <article class="product" style="animation-delay:${idx * 60}ms">
-        <div class="product__media">
-          <img src="${p.img}" alt="${p.name}" loading="lazy" />
+        <div class="product__media" data-icon="${p.icon}">
+          <img src="${p.img}" data-fallback="${p.fallback}" alt="${p.name}" loading="lazy" />
           ${p.tag ? `<span class="product__tag">${p.tag}</span>` : ""}
           <button class="product__fav" aria-label="Add ${p.name} to wishlist">♡</button>
         </div>

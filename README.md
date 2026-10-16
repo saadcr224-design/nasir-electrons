@@ -1,11 +1,11 @@
 # Nasir Electrons
 
-Animated, video-driven website for an electronics store. It's plain HTML, CSS and JavaScript, with no build step.
+Animated, video-driven website for a home & kitchen appliance store (fans, ACs, air coolers, refrigeration and kitchen appliances). It's plain HTML, CSS and JavaScript, with no build step.
 
 ## Features
 - Full-screen **background video** hero and a second video showcase section. Each video plays only while it's on screen.
 - **Live typing** headline that cycles through Smartphones, Laptops, Smart TVs and more.
-- Real product photography (Unsplash).
+- Product photos: drop your own at `assets/products/<product-name>.jpg` (for example `assets/products/ceiling-fan.jpg`) and at `assets/categories/<category>.jpg` (`fans`, `ac`, `coolers`, `fridge`, `cooking`, `small`, `care`). Until you do, a keyword-matched stock photo is used, then a styled icon.
 - Scroll-reveal animations, animated stat counters, brand marquee, scroll progress bar.
 - Product grid with category filters, add-to-cart counter and wishlist toggles.
 - Weekly deal countdown, testimonials, contact form with validation.
