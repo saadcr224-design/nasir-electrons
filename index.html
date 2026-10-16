@@ -19,6 +19,9 @@
     <div class="loader__text">NASIR <span>ELECTRONS</span></div>
   </div>
 
+  <!-- Cursor glow (desktop only) -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <!-- Scroll progress -->
   <div class="progress" id="progress"></div>
 
@@ -52,7 +55,7 @@
   <!-- HERO with background video -->
   <section class="hero" id="home">
     <video class="hero__video" autoplay muted loop playsinline preload="auto"
-           poster="https://loremflickr.com/1920/1080/kitchen,appliances/all?lock=1">
+           poster="https://images.pexels.com/photos/7005291/pexels-photo-7005291.jpeg?auto=compress&cs=tinysrgb&w=1920">
       <!-- Drop your own clip at assets/hero.mp4 and it will be used first -->
       <source src="assets/hero.mp4" type="video/mp4" />
       <source src="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4" type="video/mp4" />
@@ -60,6 +63,9 @@
     </video>
     <div class="hero__overlay"></div>
     <div class="hero__grid"></div>
+    <div class="floaters" aria-hidden="true">
+      <span>❄️</span><span>🌀</span><span>🍳</span><span>🧊</span><span>☕</span><span>💨</span><span>🥤</span><span>🍞</span>
+    </div>
 
     <div class="container hero__content">
       <span class="badge reveal">🔥 Summer &amp; kitchen deals — up to 40% off</span>
@@ -106,31 +112,31 @@
 
       <div class="cats">
         <a href="#products" class="cat cat--lg reveal" data-filter="fans" data-icon="🌀">
-          <img src="assets/categories/fans.jpg" data-fallback="https://loremflickr.com/1200/900/ceiling,fan/all?lock=20" alt="Fans" loading="lazy" />
+          <img src="assets/categories/fans.jpg" data-fallback="https://images.pexels.com/photos/7168025/pexels-photo-7168025.jpeg?auto=compress&cs=tinysrgb&w=1200|https://loremflickr.com/1200/900/ceiling,fan/all?lock=20" alt="Fans" loading="lazy" />
           <div class="cat__info"><h3>Fans</h3><span>Ceiling, pedestal, table, wall &amp; exhaust</span></div>
         </a>
         <a href="#products" class="cat reveal" data-filter="ac" data-icon="❄️">
-          <img src="assets/categories/ac.jpg" data-fallback="https://loremflickr.com/800/600/air,conditioner/all?lock=21" alt="Air Conditioners" loading="lazy" />
+          <img src="assets/categories/ac.jpg" data-fallback="https://images.pexels.com/photos/14086132/pexels-photo-14086132.jpeg?auto=compress&cs=tinysrgb&w=1200|https://loremflickr.com/800/600/air,conditioner/all?lock=21" alt="Air Conditioners" loading="lazy" />
           <div class="cat__info"><h3>Air Conditioners</h3><span>Split, inverter &amp; portable AC</span></div>
         </a>
         <a href="#products" class="cat reveal" data-filter="coolers" data-icon="💨">
-          <img src="assets/categories/coolers.jpg" data-fallback="https://loremflickr.com/800/600/air,cooler/all?lock=22" alt="Air Coolers" loading="lazy" />
+          <img src="assets/categories/coolers.jpg" data-fallback="https://images.pexels.com/photos/8102623/pexels-photo-8102623.jpeg?auto=compress&cs=tinysrgb&w=1200|https://loremflickr.com/800/600/air,cooler/all?lock=22" alt="Air Coolers" loading="lazy" />
           <div class="cat__info"><h3>Air Coolers</h3><span>Room coolers &amp; air cooler fans</span></div>
         </a>
         <a href="#products" class="cat reveal" data-filter="fridge" data-icon="🧊">
-          <img src="assets/categories/fridge.jpg" data-fallback="https://loremflickr.com/800/600/refrigerator/all?lock=23" alt="Refrigeration" loading="lazy" />
+          <img src="assets/categories/fridge.jpg" data-fallback="https://images.pexels.com/photos/20092337/pexels-photo-20092337.jpeg?auto=compress&cs=tinysrgb&w=1200|https://loremflickr.com/800/600/refrigerator/all?lock=23" alt="Refrigeration" loading="lazy" />
           <div class="cat__info"><h3>Refrigeration</h3><span>Refrigerators &amp; deep freezers</span></div>
         </a>
         <a href="#products" class="cat reveal" data-filter="cooking" data-icon="🍳">
-          <img src="assets/categories/cooking.jpg" data-fallback="https://loremflickr.com/800/600/microwave,oven/all?lock=24" alt="Cooking" loading="lazy" />
+          <img src="assets/categories/cooking.jpg" data-fallback="https://images.pexels.com/photos/6283970/pexels-photo-6283970.jpeg?auto=compress&cs=tinysrgb&w=1200|https://loremflickr.com/800/600/microwave,oven/all?lock=24" alt="Cooking" loading="lazy" />
           <div class="cat__info"><h3>Cooking</h3><span>Ovens, air fryers, stoves &amp; cookers</span></div>
         </a>
         <a href="#products" class="cat cat--wide reveal" data-filter="small" data-icon="🥤">
-          <img src="assets/categories/small.jpg" data-fallback="https://loremflickr.com/1200/900/blender/all?lock=25" alt="Kitchen Helpers" loading="lazy" />
+          <img src="assets/categories/small.jpg" data-fallback="https://images.pexels.com/photos/15206538/pexels-photo-15206538.jpeg?auto=compress&cs=tinysrgb&w=1200|https://loremflickr.com/1200/900/blender/all?lock=25" alt="Kitchen Helpers" loading="lazy" />
           <div class="cat__info"><h3>Kitchen Helpers</h3><span>Kettles, blenders, juicers, toasters &amp; more</span></div>
         </a>
         <a href="#products" class="cat cat--wide reveal" data-filter="care" data-icon="🍽️">
-          <img src="assets/categories/care.jpg" data-fallback="https://loremflickr.com/1200/900/dishwasher/all?lock=26" alt="Kitchen Care" loading="lazy" />
+          <img src="assets/categories/care.jpg" data-fallback="https://images.pexels.com/photos/4107305/pexels-photo-4107305.jpeg?auto=compress&cs=tinysrgb&w=1200|https://loremflickr.com/1200/900/dishwasher/all?lock=26" alt="Kitchen Care" loading="lazy" />
           <div class="cat__info"><h3>Kitchen Care</h3><span>Dishwashers &amp; range hoods</span></div>
         </a>
       </div>
@@ -164,7 +170,7 @@
   <!-- Video showcase -->
   <section class="showcase" id="showcase">
     <video class="showcase__video" id="showcaseVideo" muted loop playsinline preload="metadata"
-           poster="https://loremflickr.com/1920/1080/air,conditioner/all?lock=2">
+           poster="https://images.pexels.com/photos/6980569/pexels-photo-6980569.jpeg?auto=compress&cs=tinysrgb&w=1920">
       <source src="assets/showcase.mp4" type="video/mp4" />
       <source src="https://videos.pexels.com/video-files/5532771/5532771-uhd_2560_1440_25fps.mp4" type="video/mp4" />
       <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-motherboard-4397-large.mp4" type="video/mp4" />
@@ -229,7 +235,7 @@
       </div>
       <div class="deal__img reveal">
         <div class="glow"></div>
-        <img src="assets/deal.jpg" data-fallback="https://loremflickr.com/900/900/air,conditioner/all?lock=40" alt="Inverter air conditioner" loading="lazy" />
+        <img src="assets/deal.jpg" data-fallback="https://images.pexels.com/photos/38788452/pexels-photo-38788452.jpeg?auto=compress&cs=tinysrgb&w=1000|https://loremflickr.com/900/900/air,conditioner/all?lock=40" alt="Inverter air conditioner" loading="lazy" />
       </div>
     </div>
   </section>

@@ -390,6 +390,66 @@ h2 { font-family: var(--display); font-size: clamp(32px, 4.5vw, 52px); line-heig
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
 .reveal.visible { opacity: 1; transform: none; }
 
+
+/* ---------- Motion layer ---------- */
+/* Photos fade and sharpen in once loaded */
+img.fade { opacity: 0; }
+img.fade.img-loaded { opacity: 1; animation: imgIn 1s cubic-bezier(.2,.8,.2,1); }
+@keyframes imgIn { from { opacity: 0; filter: blur(14px); transform: scale(1.08); } }
+
+/* Cursor glow */
+.cursor-glow {
+  position: fixed; top: 0; left: 0; width: 420px; height: 420px; margin: -210px 0 0 -210px;
+  border-radius: 50%; pointer-events: none; z-index: 1; opacity: 0; transition: opacity .4s;
+  background: radial-gradient(circle, rgba(0,212,255,.10), rgba(124,77,255,.06) 40%, transparent 70%);
+  will-change: transform;
+}
+.cursor-glow.on { opacity: 1; }
+
+/* Floating appliance icons in the hero */
+.floaters { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.floaters span {
+  position: absolute; font-size: 34px; opacity: .22; filter: drop-shadow(0 0 18px rgba(0,212,255,.5));
+  animation: drift 14s ease-in-out infinite;
+}
+.floaters span:nth-child(1) { top: 18%; left: 62%; animation-delay: 0s; font-size: 46px; }
+.floaters span:nth-child(2) { top: 70%; left: 78%; animation-delay: -2s; }
+.floaters span:nth-child(3) { top: 35%; left: 88%; animation-delay: -4s; font-size: 40px; }
+.floaters span:nth-child(4) { top: 82%; left: 52%; animation-delay: -6s; }
+.floaters span:nth-child(5) { top: 12%; left: 84%; animation-delay: -8s; font-size: 28px; }
+.floaters span:nth-child(6) { top: 55%; left: 68%; animation-delay: -10s; font-size: 52px; }
+.floaters span:nth-child(7) { top: 25%; left: 45%; animation-delay: -3s; font-size: 26px; }
+.floaters span:nth-child(8) { top: 62%; left: 92%; animation-delay: -7s; font-size: 30px; }
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(18px, -26px) rotate(8deg); }
+  50% { transform: translate(-12px, -48px) rotate(-6deg); }
+  75% { transform: translate(-22px, -18px) rotate(4deg); }
+}
+
+/* 3D tilt + light sheen on cards */
+.tilt { transform-style: preserve-3d; will-change: transform; position: relative; }
+.tilt::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.10), transparent 45%);
+  transition: opacity .3s;
+}
+.tilt:hover::after { opacity: 1; }
+
+/* Animated underline under section headings */
+.section__head h2 { position: relative; }
+.section__head h2::after {
+  content: ""; display: block; height: 3px; width: 0; margin: 14px auto 0; border-radius: 2px;
+  background: var(--grad); transition: width 1s .35s cubic-bezier(.2,.8,.2,1);
+}
+.section__head.visible h2::after { width: 72px; }
+
+/* Magnetic buttons */
+.magnetic { transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s; }
+
+@media (max-width: 860px) { .floaters span:nth-child(n+5) { display: none; } }
+@media (hover: none) { .cursor-glow { display: none; } }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
   .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -427,6 +487,8 @@ h2 { font-family: var(--display); font-size: clamp(32px, 4.5vw, 52px); line-heig
 }
 
 @media (prefers-reduced-motion: reduce) {
+  img.fade { opacity: 1; }
+  .floaters, .cursor-glow { display: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
