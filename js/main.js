@@ -6,47 +6,46 @@
 
   const CURRENCY = "Rs ";
   // Photo for each product: assets/products/<slug>.jpg if you add one,
-  // otherwise a real Pexels photo, then a keyword stock photo, then a styled icon.
+  // otherwise a hand-picked Pexels product photo (no people, outside view), otherwise a styled icon.
   const slug = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const pexels = (id, w = 800) => `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
-  const stock = (tags, lock) => `https://loremflickr.com/800/600/${tags}/all?lock=${lock}`;
 
   const PRODUCTS = [
     // Fans
-    { name: "Ceiling Fan", px: 7601317, cat: "fans", price: 12999, old: 14999, rating: 4.8, reviews: 1320, tag: "Best Seller", tags: "ceiling,fan", icon: "🌀" },
-    { name: "Pedestal Fan", px: 1374448, cat: "fans", price: 10499, old: 11999, rating: 4.7, reviews: 860, tags: "electric,fan", icon: "🌀" },
-    { name: "Exhaust Fan", px: 1650031, cat: "fans", price: 3999, rating: 4.6, reviews: 540, tags: "exhaust,fan", icon: "🌀" },
-    { name: "Wall-Mounted Fan", px: 8102623, cat: "fans", price: 8499, old: 9499, rating: 4.6, reviews: 410, tags: "wall,fan", icon: "🌀" },
-    { name: "Table Fan", px: 3675622, cat: "fans", price: 5999, rating: 4.5, reviews: 690, tags: "desk,fan", icon: "🌀" },
+    { name: "Ceiling Fan", px: 7601317, cat: "fans", price: 12999, old: 14999, rating: 4.8, reviews: 1320, tag: "Best Seller", icon: "🌀" },
+    { name: "Pedestal Fan", px: 1374448, cat: "fans", price: 10499, old: 11999, rating: 4.7, reviews: 860, icon: "🌀" },
+    { name: "Exhaust Fan", px: 1650031, cat: "fans", price: 3999, rating: 4.6, reviews: 540, icon: "🌀" },
+    { name: "Wall-Mounted Fan", cat: "fans", price: 8499, old: 9499, rating: 4.6, reviews: 410, icon: "🌀" },
+    { name: "Table Fan", px: 3675622, cat: "fans", price: 5999, rating: 4.5, reviews: 690, icon: "🌀" },
     // Air conditioners
-    { name: "Air Conditioner (AC) 1.5 Ton Inverter", px: 38788452, cat: "ac", price: 164999, old: 219999, rating: 4.9, reviews: 975, tag: "-25%", tags: "air,conditioner", icon: "❄️" },
-    { name: "Portable Air Conditioner", px: 17333482, cat: "ac", price: 119999, old: 134999, rating: 4.6, reviews: 220, tag: "New", tags: "portable,air,conditioner", icon: "❄️" },
+    { name: "Air Conditioner (AC) 1.5 Ton Inverter", px: 38788452, cat: "ac", price: 164999, old: 219999, rating: 4.9, reviews: 975, tag: "-25%", icon: "❄️" },
+    { name: "Portable Air Conditioner", px: 17333482, cat: "ac", price: 119999, old: 134999, rating: 4.6, reviews: 220, tag: "New", icon: "❄️" },
     // Air coolers
-    { name: "Room Cooler / Air Cooler", cat: "coolers", price: 32999, old: 37999, rating: 4.7, reviews: 780, tag: "Hot", tags: "air,cooler", icon: "💨" },
-    { name: "Air Cooler Fan", cat: "coolers", price: 21999, rating: 4.5, reviews: 365, tags: "evaporative,cooler", icon: "💨" },
+    { name: "Room Cooler / Air Cooler", cat: "coolers", price: 32999, old: 37999, rating: 4.7, reviews: 780, tag: "Hot", icon: "💨" },
+    { name: "Air Cooler Fan", cat: "coolers", price: 21999, rating: 4.5, reviews: 365, icon: "💨" },
     // Refrigeration
-    { name: "Refrigerator / Fridge", px: 4061622, cat: "fridge", price: 139999, old: 154999, rating: 4.8, reviews: 1104, tag: "Best Seller", tags: "refrigerator", icon: "🧊" },
-    { name: "Deep Freezer", px: 1352271, cat: "fridge", price: 109999, old: 119999, rating: 4.7, reviews: 430, tags: "freezer", icon: "🧊" },
+    { name: "Refrigerator / Fridge", px: 6835104, cat: "fridge", price: 139999, old: 154999, rating: 4.8, reviews: 1104, tag: "Best Seller", icon: "🧊" },
+    { name: "Deep Freezer", cat: "fridge", price: 109999, old: 119999, rating: 4.7, reviews: 430, icon: "🧊" },
     // Cooking
-    { name: "Microwave Oven", px: 4686822, cat: "cooking", price: 29999, old: 34999, rating: 4.7, reviews: 890, tags: "microwave,oven", icon: "🍳" },
-    { name: "Electric Oven", px: 10599892, cat: "cooking", price: 24999, rating: 4.6, reviews: 315, tags: "electric,oven", icon: "🍳" },
-    { name: "Air Fryer", px: 29461935, cat: "cooking", price: 18999, old: 24999, rating: 4.9, reviews: 1460, tag: "Hot", tags: "air,fryer", icon: "🍟" },
-    { name: "Electric Stove", px: 6755621, cat: "cooking", price: 9999, rating: 4.5, reviews: 280, tags: "electric,stove", icon: "🔥" },
-    { name: "Induction Cooker", px: 8629111, cat: "cooking", price: 11999, old: 13999, rating: 4.6, reviews: 455, tags: "induction,cooktop", icon: "🔥" },
-    { name: "Rice Cooker", cat: "cooking", price: 8999, rating: 4.7, reviews: 510, tags: "rice,cooker", icon: "🍚" },
-    { name: "Electric Pressure Cooker", cat: "cooking", price: 16999, old: 19999, rating: 4.7, reviews: 390, tags: "pressure,cooker", icon: "🍲" },
+    { name: "Microwave Oven", px: 4686822, cat: "cooking", price: 29999, old: 34999, rating: 4.7, reviews: 890, icon: "🍳" },
+    { name: "Electric Oven", px: 6835094, cat: "cooking", price: 24999, rating: 4.6, reviews: 315, icon: "🍳" },
+    { name: "Air Fryer", px: 29461935, cat: "cooking", price: 18999, old: 24999, rating: 4.9, reviews: 1460, tag: "Hot", icon: "🍟" },
+    { name: "Electric Stove", px: 6755621, cat: "cooking", price: 9999, rating: 4.5, reviews: 280, icon: "🔥" },
+    { name: "Induction Cooker", px: 6980569, cat: "cooking", price: 11999, old: 13999, rating: 4.6, reviews: 455, icon: "🔥" },
+    { name: "Rice Cooker", cat: "cooking", price: 8999, rating: 4.7, reviews: 510, icon: "🍚" },
+    { name: "Electric Pressure Cooker", cat: "cooking", price: 16999, old: 19999, rating: 4.7, reviews: 390, icon: "🍲" },
     // Kitchen helpers
-    { name: "Electric Kettle", px: 33521165, cat: "small", price: 4499, old: 5499, rating: 4.8, reviews: 1210, tags: "electric,kettle", icon: "☕" },
-    { name: "Toaster", px: 7936643, cat: "small", price: 5999, rating: 4.6, reviews: 470, tags: "toaster", icon: "🍞" },
-    { name: "Sandwich Maker", px: 11881950, cat: "small", price: 4999, rating: 4.5, reviews: 520, tags: "sandwich,maker", icon: "🥪" },
-    { name: "Blender", px: 7460165, cat: "small", price: 7999, old: 9499, rating: 4.7, reviews: 760, tags: "blender", icon: "🥤" },
-    { name: "Juicer", px: 8770456, cat: "small", price: 9499, rating: 4.6, reviews: 340, tags: "juicer", icon: "🍊" },
-    { name: "Food Processor", px: 6824660, cat: "small", price: 19999, old: 22999, rating: 4.7, reviews: 260, tag: "New", tags: "food,processor", icon: "🥕" },
-    { name: "Mixer Grinder", px: 3094227, cat: "small", price: 11999, rating: 4.6, reviews: 410, tags: "mixer,grinder", icon: "🌶️" },
+    { name: "Electric Kettle", px: 33521165, cat: "small", price: 4499, old: 5499, rating: 4.8, reviews: 1210, icon: "☕" },
+    { name: "Toaster", px: 3682215, cat: "small", price: 5999, rating: 4.6, reviews: 470, icon: "🍞" },
+    { name: "Sandwich Maker", cat: "small", price: 4999, rating: 4.5, reviews: 520, icon: "🥪" },
+    { name: "Blender", px: 7460165, cat: "small", price: 7999, old: 9499, rating: 4.7, reviews: 760, icon: "🥤" },
+    { name: "Juicer", cat: "small", price: 9499, rating: 4.6, reviews: 340, icon: "🍊" },
+    { name: "Food Processor", px: 6824660, cat: "small", price: 19999, old: 22999, rating: 4.7, reviews: 260, tag: "New", icon: "🥕" },
+    { name: "Mixer Grinder", px: 3094227, cat: "small", price: 11999, rating: 4.6, reviews: 410, icon: "🌶️" },
     // Kitchen care
-    { name: "Dishwasher", px: 3829549, cat: "care", price: 149999, old: 164999, rating: 4.7, reviews: 180, tags: "dishwasher", icon: "🍽️" },
-    { name: "Range Hood / Kitchen Exhaust", px: 33955606, cat: "care", price: 39999, old: 44999, rating: 4.6, reviews: 230, tags: "range,hood", icon: "♨️" },
-  ].map((p, i) => ({ ...p, img: `assets/products/${slug(p.name)}.jpg`, fallback: [p.px && pexels(p.px), stock(p.tags, 100 + i)].filter(Boolean).join("|") }));
+    { name: "Dishwasher", px: 213162, cat: "care", price: 149999, old: 164999, rating: 4.7, reviews: 180, icon: "🍽️" },
+    { name: "Range Hood / Kitchen Exhaust", px: 33955606, cat: "care", price: 39999, old: 44999, rating: 4.6, reviews: 230, icon: "♨️" },
+  ].map((p) => ({ ...p, img: `assets/products/${slug(p.name)}.jpg`, fallback: p.px ? pexels(p.px) : "" }));
 
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];

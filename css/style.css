@@ -335,7 +335,7 @@ h2 { font-family: var(--display); font-size: clamp(32px, 4.5vw, 52px); line-heig
 .stars { color: #ffc94d; letter-spacing: 3px; }
 .review blockquote { font-size: 16px; color: #c9cfdb; flex: 1; }
 .review figcaption { display: flex; align-items: center; gap: 14px; }
-.review figcaption img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+.avatar { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; background: var(--grad); font-family: var(--display); font-weight: 700; font-size: 16px; }
 .review figcaption b { display: block; }
 .review figcaption span { font-size: 13px; color: var(--muted); }
 

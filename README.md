@@ -5,7 +5,7 @@ Animated, video-driven website for a home & kitchen appliance store (fans, ACs, 
 ## Features
 - Full-screen **background video** hero and a second video showcase section. Each video plays only while it's on screen.
 - **Live typing** headline that cycles through Smartphones, Laptops, Smart TVs and more.
-- Product photos: drop your own at `assets/products/<product-name>.jpg` (for example `assets/products/ceiling-fan.jpg`) and at `assets/categories/<category>.jpg` (`fans`, `ac`, `coolers`, `fridge`, `cooking`, `small`, `care`). Until you do, real free-licence photos from [Pexels](https://www.pexels.com/license/) are used, then a keyword stock photo, then a styled icon.
+- Product photos: drop your own at `assets/products/<product-name>.jpg` (for example `assets/products/ceiling-fan.jpg`) and at `assets/categories/<category>.jpg` (`fans`, `ac`, `coolers`, `fridge`, `cooking`, `small`, `care`). Until you do, real free-licence photos from [Pexels](https://www.pexels.com/license/) (product-only, no people) are used, otherwise a styled icon.
 - Motion: 3D tilt with light sheen on cards, cursor glow, magnetic buttons, floating hero icons, hero parallax, photo fade-in, scroll-reveal animations, animated stat counters, brand marquee, scroll progress bar.
 - Product grid with category filters, add-to-cart counter and wishlist toggles.
 - Weekly deal countdown, testimonials, contact form with validation.
