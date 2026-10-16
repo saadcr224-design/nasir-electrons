@@ -40,7 +40,14 @@ img.img-fallback {
   object-position: -9999px;
   color: transparent;
   font-size: 0;
+  visibility: hidden;
 }
+.icon-fallback { background: radial-gradient(circle at 50% 40%, rgba(0,212,255,.18), transparent 65%), linear-gradient(135deg, #18213a, #0d1222); }
+.icon-fallback::after {
+  content: attr(data-icon); position: absolute; inset: 0; z-index: -1;
+  display: grid; place-items: center; font-size: 72px; pointer-events: none;
+}
+.product__media.icon-fallback::after { z-index: 0; }
 
 /* ---------- Loader ---------- */
 .loader {
