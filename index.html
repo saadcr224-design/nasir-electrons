@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nasir Electrons — Premium Electronics Store</title>
+  <meta name="description" content="Nasir Electrons — smartphones, laptops, audio, TVs, cameras, gaming and smart home tech. Genuine products, official warranty, fast delivery." />
+  <meta name="theme-color" content="#05070d" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Page loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__ring"></div>
+    <div class="loader__text">NASIR <span>ELECTRONS</span></div>
+  </div>
+
+  <!-- Scroll progress -->
+  <div class="progress" id="progress"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#home" class="logo">
+        <span class="logo__mark">⚡</span>
+        <span>Nasir<b>Electrons</b></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Main">
+        <a href="#home" class="nav__link active">Home</a>
+        <a href="#categories" class="nav__link">Categories</a>
+        <a href="#products" class="nav__link">Products</a>
+        <a href="#showcase" class="nav__link">Showcase</a>
+        <a href="#reviews" class="nav__link">Reviews</a>
+        <a href="#contact" class="nav__link">Contact</a>
+      </nav>
+      <div class="header__actions">
+        <button class="cart-btn" id="cartBtn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO with background video -->
+  <section class="hero" id="home">
+    <video class="hero__video" autoplay muted loop playsinline preload="auto"
+           poster="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80">
+      <!-- Drop your own clip at assets/hero.mp4 and it will be used first -->
+      <source src="assets/hero.mp4" type="video/mp4" />
+      <source src="https://videos.pexels.com/video-files/3129957/3129957-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-circuit-board-with-blue-lights-4405-large.mp4" type="video/mp4" />
+    </video>
+    <div class="hero__overlay"></div>
+    <div class="hero__grid"></div>
+
+    <div class="container hero__content">
+      <span class="badge reveal">🔥 New season deals — up to 40% off</span>
+      <h1 class="hero__title reveal">
+        The future of<br />
+        <span class="typed" id="typed"></span><span class="caret">|</span>
+      </h1>
+      <p class="hero__text reveal">
+        Genuine smartphones, laptops, audio, TVs and smart-home tech —
+        with official warranty, easy installments and same-day delivery.
+      </p>
+      <div class="hero__cta reveal">
+        <a href="#products" class="btn btn--primary">Shop Now <span>→</span></a>
+        <a href="#showcase" class="btn btn--ghost"><span class="play">▶</span> Watch Video</a>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><b data-count="25000">0</b><span>Happy customers</span></div>
+        <div class="stat"><b data-count="1200">0</b><span>Products in stock</span></div>
+        <div class="stat"><b data-count="50">0</b><span>Top brands</span></div>
+        <div class="stat"><b data-count="12">0</b><span>Years of trust</span></div>
+      </div>
+    </div>
+
+    <a href="#categories" class="scroll-hint" aria-label="Scroll down"><span></span></a>
+  </section>
+
+  <!-- Brand marquee -->
+  <section class="marquee" aria-label="Brands">
+    <div class="marquee__track">
+      <span>APPLE</span><span>SAMSUNG</span><span>SONY</span><span>DELL</span><span>HP</span><span>LENOVO</span>
+      <span>XIAOMI</span><span>CANON</span><span>BOSE</span><span>JBL</span><span>LG</span><span>ASUS</span>
+      <span>APPLE</span><span>SAMSUNG</span><span>SONY</span><span>DELL</span><span>HP</span><span>LENOVO</span>
+      <span>XIAOMI</span><span>CANON</span><span>BOSE</span><span>JBL</span><span>LG</span><span>ASUS</span>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" id="categories">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Browse</span>
+        <h2>Shop by category</h2>
+        <p>Everything electronic, under one roof.</p>
+      </div>
+
+      <div class="cats">
+        <a href="#products" class="cat cat--lg reveal" data-filter="phones">
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=80" alt="Smartphones" loading="lazy" />
+          <div class="cat__info"><h3>Smartphones</h3><span>320+ models</span></div>
+        </a>
+        <a href="#products" class="cat reveal" data-filter="laptops">
+          <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80" alt="Laptops" loading="lazy" />
+          <div class="cat__info"><h3>Laptops</h3><span>180+ models</span></div>
+        </a>
+        <a href="#products" class="cat reveal" data-filter="audio">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="Headphones and audio" loading="lazy" />
+          <div class="cat__info"><h3>Audio</h3><span>240+ models</span></div>
+        </a>
+        <a href="#products" class="cat reveal" data-filter="tv">
+          <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=800&q=80" alt="Smart TVs" loading="lazy" />
+          <div class="cat__info"><h3>Smart TVs</h3><span>90+ models</span></div>
+        </a>
+        <a href="#products" class="cat reveal" data-filter="cameras">
+          <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80" alt="Cameras" loading="lazy" />
+          <div class="cat__info"><h3>Cameras</h3><span>110+ models</span></div>
+        </a>
+        <a href="#products" class="cat cat--wide reveal" data-filter="gaming">
+          <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80" alt="Gaming" loading="lazy" />
+          <div class="cat__info"><h3>Gaming</h3><span>150+ products</span></div>
+        </a>
+        <a href="#products" class="cat cat--wide reveal" data-filter="wearables">
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=1200&q=80" alt="Smartwatches and wearables" loading="lazy" />
+          <div class="cat__info"><h3>Wearables</h3><span>80+ products</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="section section--alt" id="products">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Trending</span>
+        <h2>Featured products</h2>
+        <p>Hand-picked best sellers, updated every week.</p>
+      </div>
+
+      <div class="filters reveal" id="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="phones">Phones</button>
+        <button class="chip" data-filter="laptops">Laptops</button>
+        <button class="chip" data-filter="audio">Audio</button>
+        <button class="chip" data-filter="tv">TVs</button>
+        <button class="chip" data-filter="cameras">Cameras</button>
+        <button class="chip" data-filter="gaming">Gaming</button>
+        <button class="chip" data-filter="wearables">Wearables</button>
+      </div>
+
+      <div class="products" id="productGrid"><!-- rendered by js/main.js --></div>
+    </div>
+  </section>
+
+  <!-- Video showcase -->
+  <section class="showcase" id="showcase">
+    <video class="showcase__video" id="showcaseVideo" muted loop playsinline preload="metadata"
+           poster="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1920&q=80">
+      <source src="assets/showcase.mp4" type="video/mp4" />
+      <source src="https://videos.pexels.com/video-files/5532771/5532771-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-a-motherboard-4397-large.mp4" type="video/mp4" />
+    </video>
+    <div class="showcase__overlay"></div>
+    <div class="container showcase__content reveal">
+      <span class="eyebrow">Experience</span>
+      <h2>Built for performance.<br />Designed for life.</h2>
+      <p>Visit our store for live demos — test the latest phones, laptops and home theatre systems before you buy.</p>
+      <button class="play-btn" id="playToggle" aria-label="Play or pause video">
+        <span class="play-btn__icon">❚❚</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Why Nasir Electrons</span>
+        <h2>Shopping made simple</h2>
+      </div>
+      <div class="features">
+        <div class="feature reveal">
+          <div class="feature__icon">🛡️</div>
+          <h3>100% Genuine</h3>
+          <p>Every product comes sealed with official brand warranty.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon">🚚</div>
+          <h3>Fast Delivery</h3>
+          <p>Same-day delivery in the city, 2–3 days nationwide.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon">💳</div>
+          <h3>Easy Installments</h3>
+          <p>0% markup plans on credit cards and bank partners.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="feature__icon">🔧</div>
+          <h3>Repair &amp; Service</h3>
+          <p>Expert technicians for repairs, setup and installation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deal banner with countdown -->
+  <section class="deal">
+    <div class="container deal__inner">
+      <div class="deal__text reveal">
+        <span class="eyebrow">Deal of the week</span>
+        <h2>Studio headphones <br /><span class="grad">30% off</span></h2>
+        <p>Active noise cancellation, 40-hour battery, and studio-grade sound.</p>
+        <div class="countdown" id="countdown">
+          <div><b id="cdD">00</b><span>Days</span></div>
+          <div><b id="cdH">00</b><span>Hours</span></div>
+          <div><b id="cdM">00</b><span>Mins</span></div>
+          <div><b id="cdS">00</b><span>Secs</span></div>
+        </div>
+        <a href="#products" class="btn btn--primary">Grab the deal <span>→</span></a>
+      </div>
+      <div class="deal__img reveal">
+        <div class="glow"></div>
+        <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=900&q=80" alt="Studio headphones" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section section--alt" id="reviews">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">Testimonials</span>
+        <h2>Loved by customers</h2>
+      </div>
+      <div class="reviews">
+        <figure class="review reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>“Bought my laptop here — genuine product, best price in town and delivered the same evening.”</blockquote>
+          <figcaption>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="" loading="lazy" />
+            <div><b>Ahmed R.</b><span>Verified buyer</span></div>
+          </figcaption>
+        </figure>
+        <figure class="review reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>“The installment plan made it easy to get a new phone. Staff explained everything clearly.”</blockquote>
+          <figcaption>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="" loading="lazy" />
+            <div><b>Sara K.</b><span>Verified buyer</span></div>
+          </figcaption>
+        </figure>
+        <figure class="review reveal">
+          <div class="stars">★★★★★</div>
+          <blockquote>“They installed my home theatre and TV wall mount. Professional service from start to finish.”</blockquote>
+          <figcaption>
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="" loading="lazy" />
+            <div><b>Bilal M.</b><span>Verified buyer</span></div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container contact">
+      <div class="contact__info reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Visit our store</h2>
+        <p>Have a question about a product, price or availability? Message us and we'll reply within the hour.</p>
+        <ul>
+          <li><span>📍</span> Main Market, Your City</li>
+          <li><span>📞</span> <a href="tel:+920000000000">+92 000 0000000</a></li>
+          <li><span>✉️</span> <a href="mailto:info@nasirelectrons.com">info@nasirelectrons.com</a></li>
+          <li><span>🕘</span> Mon – Sat, 10:00 AM – 10:00 PM</li>
+        </ul>
+      </div>
+      <form class="form reveal" id="contactForm" novalidate>
+        <div class="form__row">
+          <label>Name<input type="text" name="name" required placeholder="Your name" /></label>
+          <label>Phone<input type="tel" name="phone" required placeholder="03xx xxxxxxx" /></label>
+        </div>
+        <label>Product of interest
+          <select name="product">
+            <option>Smartphone</option><option>Laptop</option><option>Audio</option>
+            <option>Smart TV</option><option>Camera</option><option>Gaming</option><option>Other</option>
+          </select>
+        </label>
+        <label>Message<textarea name="message" rows="4" required placeholder="How can we help?"></textarea></label>
+        <button type="submit" class="btn btn--primary btn--full">Send message <span>→</span></button>
+        <p class="form__note" id="formNote" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <a href="#home" class="logo"><span class="logo__mark">⚡</span><span>Nasir<b>Electrons</b></span></a>
+        <p>Your trusted electronics partner — genuine products, fair prices, real service.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <a href="#products">Smartphones</a><a href="#products">Laptops</a><a href="#products">Audio</a><a href="#products">TVs</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#reviews">Reviews</a><a href="#contact">Contact</a><a href="#showcase">Store tour</a>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <form class="newsletter" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='✓';">
+          <input type="email" placeholder="Email address" required aria-label="Email address" />
+          <button type="submit">→</button>
+        </form>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year"></span> Nasir Electrons. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Back to top -->
+  <a href="#home" class="to-top" id="toTop" aria-label="Back to top">↑</a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
